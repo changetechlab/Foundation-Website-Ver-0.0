@@ -20,10 +20,16 @@ const Footer = () => {
         <footer className="bg-gray-900 text-white">
             {/* Top Collaboration Banner */}
             <div className="bg-primary-900 py-6 border-b border-gray-800">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
                     <p className="text-xl font-medium text-primary-100">
                         Collaborate with us as a donor, CSR partner, or implementation partner.
                     </p>
+                    <Link
+                        to="/donate"
+                        className="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-600 hover:bg-primary-500 text-white text-sm font-semibold transition-colors shadow-xs shrink-0"
+                    >
+                        Support Our Mission →
+                    </Link>
                 </div>
             </div>
 
@@ -83,6 +89,7 @@ const Footer = () => {
                                         <li><Link to="/portfolio" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all inline-block">Our Programs</Link></li>
                                         <li><Link to="/legal" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all inline-block">Legal & Governance</Link></li>
                                         <li><Link to="/contact" className="text-gray-300 hover:text-white hover:translate-x-1 transition-all inline-block">Contact Us</Link></li>
+                                        <li><Link to="/donate" className="text-primary-400 hover:text-primary-300 hover:translate-x-1 transition-all inline-flex items-center font-medium">Donate & Support →</Link></li>
                                     </ul>
                                 </div>
 

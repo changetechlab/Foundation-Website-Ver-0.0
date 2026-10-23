@@ -19,10 +19,20 @@ export const legalData = {
     }
 };
 
+export const bankDetails = {
+    beneficiaryName: "Centre for Himalayan Agriculture and Nature Foundation",
+    bankName: "HDFC Bank",
+    accountNumber: "50200123157375",
+    accountType: "Current Account",
+    ifscCode: "HDFC0000472",
+    branch: "New Tehri, Uttarakhand (249001)"
+};
+
 export const navigationLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Portfolio", path: "/portfolio" },
     { name: "Legal", path: "/legal" },
-    { name: "Contact", path: "/contact" }
+    { name: "Contact", path: "/contact" },
+    { name: "Donate", path: "/donate" }
 ];
