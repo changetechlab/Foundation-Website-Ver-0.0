@@ -8,14 +8,19 @@ export const legalData = {
     incorporationDate: "January 20, 2026",
     registeredOffice: {
         address: "Badshahi Thaul",
+        block: "Block Chamba",
         district: "Tehri Garhwal",
         pincode: "249199",
         state: "Uttarakhand"
     },
     jurisdiction: "Registrar of Companies, Uttarakhand",
     contact: {
-        email: "info@change-uttarakhand.org",
-        website: "www.change-uttarakhand.org"
+        /** Primary general-inquiry email */
+        email: "thechangeuttarakhand@gmail.com",
+        /** TechLab / alternate email */
+        emailAlt: "changetechlab@gmail.com",
+        website: "www.change-uttarakhand.org",
+        phones: ["+91-9690720525", "+91-9760325927"]
     }
 };
 
@@ -27,6 +32,12 @@ export const bankDetails = {
     ifscCode: "HDFC0000472",
     branch: "New Tehri, Uttarakhand (249001)"
 };
+
+/**
+ * Placeholder URL for the donation receipt Google Form.
+ * Replace this value with the live form link once published.
+ */
+export const DONATION_RECEIPT_FORM_URL = "https://forms.google.com";
 
 export const navigationLinks = [
     { name: "Home", path: "/" },

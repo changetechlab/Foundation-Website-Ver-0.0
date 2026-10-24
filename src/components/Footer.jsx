@@ -113,6 +113,7 @@ const Footer = () => {
                                     </h5>
                                     <p className="text-gray-300">
                                         {legalData.registeredOffice.address},<br />
+                                        {legalData.registeredOffice.block},<br />
                                         {legalData.registeredOffice.district},<br />
                                         {legalData.registeredOffice.state} - {legalData.registeredOffice.pincode}, India
                                     </p>
@@ -122,8 +123,11 @@ const Footer = () => {
                                     <h5 className="text-sm font-semibold text-gray-400 mb-2 flex items-center">
                                         <Mail className="w-4 h-4 mr-2" /> Official Email
                                     </h5>
-                                    <a href={`mailto:${legalData.contact.email}`} className="text-white hover:text-primary-400 transition-colors">
+                                    <a href={`mailto:${legalData.contact.email}`} className="block text-white hover:text-primary-400 transition-colors">
                                         {legalData.contact.email}
+                                    </a>
+                                    <a href={`mailto:${legalData.contact.emailAlt}`} className="block text-sm text-gray-400 hover:text-primary-400 transition-colors mt-1">
+                                        {legalData.contact.emailAlt} <span className="text-xs text-gray-500">(TechLab)</span>
                                     </a>
                                 </div>
 

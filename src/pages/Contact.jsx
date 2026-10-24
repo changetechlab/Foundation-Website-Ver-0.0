@@ -82,7 +82,8 @@ const Contact = () => {
                                 <div className="ml-4">
                                     <h3 className="text-lg font-medium text-gray-900">Registered Office</h3>
                                     <p className="mt-1 text-gray-600">
-                                        {legalData.registeredOffice.address}<br />
+                                        {legalData.registeredOffice.address},<br />
+                                        {legalData.registeredOffice.block},<br />
                                         {legalData.registeredOffice.district}, {legalData.registeredOffice.state}<br />
                                         PIN: {legalData.registeredOffice.pincode}
                                     </p>
@@ -95,7 +96,12 @@ const Contact = () => {
                                 </div>
                                 <div className="ml-4">
                                     <h3 className="text-lg font-medium text-gray-900">Email</h3>
-                                    <p className="mt-1 text-gray-600">{legalData.contact.email}</p>
+                                    <a href={`mailto:${legalData.contact.email}`} className="mt-1 block text-gray-600 hover:text-primary-600 transition-colors">
+                                        {legalData.contact.email}
+                                    </a>
+                                    <a href={`mailto:${legalData.contact.emailAlt}`} className="block text-sm text-gray-500 hover:text-primary-600 transition-colors">
+                                        {legalData.contact.emailAlt} <span className="text-xs text-gray-400">(TechLab)</span>
+                                    </a>
                                 </div>
                             </div>
 
@@ -105,7 +111,15 @@ const Contact = () => {
                                 </div>
                                 <div className="ml-4">
                                     <h3 className="text-lg font-medium text-gray-900">Phone</h3>
-                                    <p className="mt-1 text-gray-600">+91 {Math.floor(Math.random() * 9000000000) + 1000000000}</p>
+                                    {legalData.contact.phones.map((phone) => (
+                                        <a
+                                            key={phone}
+                                            href={`tel:${phone.replace(/-/g, '')}`}
+                                            className="block mt-1 text-gray-600 hover:text-primary-600 transition-colors"
+                                        >
+                                            {phone}
+                                        </a>
+                                    ))}
                                 </div>
                             </div>
                         </div>

@@ -20,7 +20,7 @@ import {
     Copy,
     Check
 } from 'lucide-react';
-import { legalData, bankDetails } from '../lib/constants';
+import { legalData, bankDetails, DONATION_RECEIPT_FORM_URL } from '../lib/constants';
 
 const Donate = () => {
     const [openFaq, setOpenFaq] = useState(null);
@@ -353,6 +353,62 @@ const Donate = () => {
                                     <Mail className="w-4 h-4 mr-2" />
                                     Email UTR / Request Receipt
                                 </a>
+                            </div>
+                        </div>
+
+                        {/* 80G Donation Receipt CTA Card */}
+                        <div className="bg-gradient-to-br from-primary-50 via-white to-emerald-50 border-2 border-primary-200 rounded-2xl p-6 sm:p-8 shadow-xs">
+                            <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+                                {/* Icon Badge */}
+                                <div className="w-14 h-14 rounded-2xl bg-primary-100 border border-primary-200 text-primary-700 flex items-center justify-center shrink-0">
+                                    <FileText className="w-7 h-7" />
+                                </div>
+
+                                <div className="flex-1 space-y-3">
+                                    {/* Header */}
+                                    <div>
+                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary-100 text-primary-800 border border-primary-200 mb-2">
+                                            Claim Official 80G Receipt
+                                        </span>
+                                        <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug">
+                                            Apni Official Donation Receipt Praapt Karein
+                                        </h3>
+                                    </div>
+
+                                    {/* Body copy */}
+                                    <p className="text-sm text-gray-600 leading-relaxed">
+                                        Bank transfer (NEFT / RTGS / IMPS) complete karne ke baad apni official donation receipt praapt karne ke liye niche diye gaye form ko bharein.
+                                    </p>
+
+                                    {/* CTA Buttons */}
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-1">
+                                        {/* Primary — Google Form */}
+                                        <a
+                                            id="donate-receipt-form-link"
+                                            href={DONATION_RECEIPT_FORM_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 active:scale-95 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-all duration-150 shadow-sm group"
+                                        >
+                                            <FileText className="w-4 h-4 mr-2 transition-transform group-hover:-translate-y-0.5" />
+                                            Fill Receipt Request Form
+                                            <ExternalLink className="w-3.5 h-3.5 ml-2 opacity-70" />
+                                        </a>
+
+                                        {/* Secondary — mailto fallback */}
+                                        <a
+                                            id="donate-receipt-email-link"
+                                            href="mailto:anupamrayal@gmail.com?subject=Donation%20Receipt%20Request%20-%20UTR%20%26%20PAN%20Details"
+                                            className="inline-flex items-center text-sm text-gray-600 hover:text-primary-700 font-medium transition-colors"
+                                        >
+                                            <Mail className="w-4 h-4 mr-1.5 shrink-0" />
+                                            <span>
+                                                Alternatively, email your UTR &amp; PAN to{' '}
+                                                <span className="text-primary-600 font-semibold underline underline-offset-2">anupamrayal@gmail.com</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
