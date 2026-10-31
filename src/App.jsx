@@ -7,6 +7,7 @@ import Portfolio from './pages/Portfolio';
 import Legal from './pages/Legal';
 import Contact from './pages/Contact';
 import Donate from './pages/Donate';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/legal" element={<Legal />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>

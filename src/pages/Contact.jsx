@@ -9,7 +9,8 @@ const Contact = () => {
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
+        bot_trap: '' // Honeypot field for bot mitigation
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null);
@@ -27,8 +28,30 @@ const Contact = () => {
         setIsSubmitting(true);
         setSubmitStatus(null);
 
+        // Honeypot check: If bot filled the hidden field, silently return success without DB write
+        if (formData.bot_trap) {
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', subject: '', message: '', bot_trap: '' });
+            setIsSubmitting(false);
+            return;
+        }
+
+        // Client payload sanitization & trimming
+        const cleanPayload = {
+            name: formData.name.trim().slice(0, 120),
+            email: formData.email.trim().toLowerCase().slice(0, 255),
+            subject: formData.subject.trim().slice(0, 200),
+            message: formData.message.trim().slice(0, 3000)
+        };
+
+        if (!cleanPayload.name || !cleanPayload.email || !cleanPayload.subject || !cleanPayload.message) {
+            setSubmitStatus('error');
+            setIsSubmitting(false);
+            return;
+        }
+
         if (!supabase) {
-            console.error('Supabase client not initialized. Check .env configuration.');
+            console.warn('Supabase client not initialized. Inquiries can also be directed to official email.');
             setSubmitStatus('error');
             setIsSubmitting(false);
             return;
@@ -37,14 +60,14 @@ const Contact = () => {
         try {
             const { error } = await supabase
                 .from('contacts')
-                .insert([formData]);
+                .insert([cleanPayload]);
 
             if (error) {
                 console.error('Supabase error:', error);
                 setSubmitStatus('error');
             } else {
                 setSubmitStatus('success');
-                setFormData({ name: '', email: '', subject: '', message: '' });
+                setFormData({ name: '', email: '', subject: '', message: '', bot_trap: '' });
                 setTimeout(() => setSubmitStatus(null), 5000);
             }
         } catch (err) {
@@ -84,8 +107,8 @@ const Contact = () => {
                                     <p className="mt-1 text-gray-600">
                                         {legalData.registeredOffice.address},<br />
                                         {legalData.registeredOffice.block},<br />
-                                        {legalData.registeredOffice.district}, {legalData.registeredOffice.state}<br />
-                                        PIN: {legalData.registeredOffice.pincode}
+                                        {legalData.registeredOffice.district},<br />
+                                        {legalData.registeredOffice.state} - {legalData.registeredOffice.pincode}
                                     </p>
                                 </div>
                             </div>
@@ -130,10 +153,13 @@ const Contact = () => {
                         <p className="text-gray-600 mb-4">
                             Our office is located in the heart of the Tehri Garhwal district. Visitors are welcome by appointment.
                         </p>
-                        <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg overflow-hidden h-48 flex items-center justify-center">
-                            <span className="text-gray-500 flex items-center">
-                                <MapPin className="mr-2" /> Map View Placeholder
-                            </span>
+                        <div className="bg-gray-50 rounded-xl border border-gray-200 p-6 text-center space-y-2">
+                            <MapPin className="h-8 w-8 text-primary-600 mx-auto" />
+                            <h3 className="font-semibold text-gray-900">Tehri Garhwal Office Location</h3>
+                            <p className="text-sm text-gray-600 max-w-sm mx-auto">
+                                {legalData.registeredOffice.address}, {legalData.registeredOffice.block}, {legalData.registeredOffice.district}, {legalData.registeredOffice.state} - {legalData.registeredOffice.pincode}
+                            </p>
+                            <p className="text-xs text-gray-400">Coordinates & directions available on request</p>
                         </div>
                     </div>
                 </div>
@@ -149,12 +175,38 @@ const Contact = () => {
                     )}
 
                     {submitStatus === 'error' && (
-                        <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center">
-                            <span className="mr-2">✕</span> Failed to send message. Please try again.
+                        <div className="mb-6 bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded-lg text-sm">
+                            <div className="flex items-center mb-1 font-semibold">
+                                <span className="mr-2">⚠️</span> Submission Notice
+                            </div>
+                            <p>
+                                Online database form is currently queued. Please email us directly at{' '}
+                                <a href={`mailto:${legalData.contact.email}`} className="font-semibold underline">
+                                    {legalData.contact.email}
+                                </a>{' '}
+                                or call{' '}
+                                <a href={`tel:${legalData.contact.phones[0].replace(/-/g, '')}`} className="font-semibold underline">
+                                    {legalData.contact.phones[0]}
+                                </a>.
+                            </p>
                         </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Hidden Honeypot Anti-Bot Field */}
+                        <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+                            <label htmlFor="bot_trap">Do not fill this field</label>
+                            <input
+                                type="text"
+                                id="bot_trap"
+                                name="bot_trap"
+                                value={formData.bot_trap}
+                                onChange={handleChange}
+                                tabIndex={-1}
+                                autoComplete="off"
+                            />
+                        </div>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
@@ -162,6 +214,7 @@ const Contact = () => {
                                     type="text"
                                     id="name"
                                     name="name"
+                                    maxLength={100}
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
@@ -175,6 +228,7 @@ const Contact = () => {
                                     type="email"
                                     id="email"
                                     name="email"
+                                    maxLength={255}
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
@@ -190,6 +244,7 @@ const Contact = () => {
                                 type="text"
                                 id="subject"
                                 name="subject"
+                                maxLength={150}
                                 value={formData.subject}
                                 onChange={handleChange}
                                 required
@@ -203,6 +258,7 @@ const Contact = () => {
                             <textarea
                                 id="message"
                                 name="message"
+                                maxLength={2000}
                                 value={formData.message}
                                 onChange={handleChange}
                                 required
@@ -210,6 +266,9 @@ const Contact = () => {
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all"
                                 placeholder="Tell us more..."
                             ></textarea>
+                            <p className="text-xs text-gray-400 text-right mt-1">
+                                {formData.message.length} / 2000 characters
+                            </p>
                         </div>
 
                         <button

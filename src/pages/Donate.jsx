@@ -105,7 +105,8 @@ const Donate = () => {
                     name="description" 
                     content="Support CHANGE Foundation's mission for sustainable Himalayan agriculture, water conservation, and community livelihoods with verified direct bank transfer." 
                 />
-                <link rel="canonical" href="https://www.change-uttarakhand.org/donate" />
+                {/* Canonical URL pending final domain purchase and deployment */}
+                {/* <link rel="canonical" href="https://www.change-uttarakhand.org/donate" /> */}
             </Helmet>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
@@ -398,13 +399,13 @@ const Donate = () => {
                                         {/* Secondary — mailto fallback */}
                                         <a
                                             id="donate-receipt-email-link"
-                                            href="mailto:anupamrayal@gmail.com?subject=Donation%20Receipt%20Request%20-%20UTR%20%26%20PAN%20Details"
+                                            href={`mailto:${legalData.contact.email}?subject=Donation%20Receipt%20Request%20-%20UTR%20%26%20PAN%20Details`}
                                             className="inline-flex items-center text-sm text-gray-600 hover:text-primary-700 font-medium transition-colors"
                                         >
                                             <Mail className="w-4 h-4 mr-1.5 shrink-0" />
                                             <span>
                                                 Alternatively, email your UTR &amp; PAN to{' '}
-                                                <span className="text-primary-600 font-semibold underline underline-offset-2">anupamrayal@gmail.com</span>
+                                                <span className="text-primary-600 font-semibold underline underline-offset-2">{legalData.contact.email}</span>
                                             </span>
                                         </a>
                                     </div>

@@ -55,7 +55,7 @@ const Header = () => {
                             rel="noopener noreferrer"
                             className="text-sm font-medium text-gray-500 hover:text-primary-600 transition-colors duration-200"
                         >
-                            ⚙️ TechLab
+                            🔬 TechLab
                         </a>
                     </div>
 
@@ -111,7 +111,7 @@ const Header = () => {
                             className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-primary-600 hover:bg-gray-50"
                             onClick={() => setIsMenuOpen(false)}
                         >
-                            ⚙️ TechLab
+                            🔬 TechLab
                         </a>
                     </div>
                 </div>

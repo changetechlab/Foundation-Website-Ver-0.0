@@ -7,7 +7,7 @@ export const legalData = {
     tan: "MRTC08215E",
     incorporationDate: "January 20, 2026",
     registeredOffice: {
-        address: "Badshahi Thaul",
+        address: "Badshahi Thaul, Near S.R.T. Campus",
         block: "Block Chamba",
         district: "Tehri Garhwal",
         pincode: "249199",
@@ -34,10 +34,10 @@ export const bankDetails = {
 };
 
 /**
- * Placeholder URL for the donation receipt Google Form.
- * Replace this value with the live form link once published.
+ * Live Google Form link for donors to request their official 80G donation receipt.
+ * Verified and active for Section 8 tax compliance.
  */
-export const DONATION_RECEIPT_FORM_URL = "https://forms.google.com";
+export const DONATION_RECEIPT_FORM_URL = "https://forms.gle/9JjzySaY7cpdsxqd8";
 
 export const navigationLinks = [
     { name: "Home", path: "/" },

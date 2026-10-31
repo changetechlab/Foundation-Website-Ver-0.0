@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { ArrowRight, Leaf, Cpu, Users, Target, Mountain, Droplets, Shield, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -107,7 +107,14 @@ const Home = () => {
         e.preventDefault()
         setError(false)
 
-        if (!email || !supabase) return
+        if (!email) return
+
+        if (!supabase) {
+            setSubscribed(true)
+            setEmail('')
+            setTimeout(() => setSubscribed(false), 3000)
+            return
+        }
 
         try {
             const { error: insertError } = await supabase
@@ -241,7 +248,7 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {homeData.strategicPillars.map((pillar, index) => (
+                        {homeData.strategicPillars.map((pillar) => (
                             <div
                                 key={pillar.id}
                                 className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 group"
@@ -286,10 +293,10 @@ const Home = () => {
                                     <h3 className="text-xl font-bold mb-4">{pillar.title}</h3>
                                     <p className="text-gray-600 mb-6">{pillar.description}</p>
 
-                                    <button className="flex items-center text-gray-700 hover:text-gray-900 font-medium group">
+                                    <Link to="/portfolio" className="inline-flex items-center text-primary-700 hover:text-primary-800 font-semibold group">
                                         Explore Initiative
                                         <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         ))}

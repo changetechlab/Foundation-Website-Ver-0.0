@@ -17,15 +17,18 @@ const legalData = {
     tan: "MRTC08215E",
     incorporationDate: "January 20, 2026",
     registeredOffice: {
-        address: "Badshahi Thaul",
+        address: "Badshahi Thaul, Near S.R.T. Campus",
+        block: "Block Chamba",
         district: "Tehri Garhwal",
         pincode: "249199",
         state: "Uttarakhand"
     },
     jurisdiction: "Registrar of Companies, Uttarakhand",
     contact: {
-        email: "info@change-uttarakhand.org",
-        website: "www.change-uttarakhand.org"
+        email: "thechangeuttarakhand@gmail.com",
+        emailAlt: "changetechlab@gmail.com",
+        website: "www.change-uttarakhand.org",
+        phones: ["+91-9690720525", "+91-9760325927"]
     }
 };
 
@@ -41,7 +44,6 @@ const navigationLinks = [
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const location = useLocation();
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
@@ -293,7 +295,6 @@ async function decodeAudioData(data, ctx, sampleRate, numChannels) {
 }
 
 const ChatBot = () => {
-    const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const [language, setLanguage] = useState(() => {
         const saved = localStorage.getItem('chatbot_lang');
@@ -302,7 +303,7 @@ const ChatBot = () => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [isVoiceEnabled, setIsVoiceEnabled] = useState(true);
+    const isVoiceEnabled = true;
     const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
 
     const scrollRef = useRef(null);
@@ -856,7 +857,7 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {homeData.strategicPillars.map((pillar, index) => (
+                        {homeData.strategicPillars.map((pillar) => (
                             <div
                                 key={pillar.id}
                                 className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 group"
@@ -1321,7 +1322,7 @@ const Legal = () => {
                                 <li>Request access, correction, or deletion of your data</li>
                                 <li>Opt out of communications at any time</li>
                             </ul>
-                            <p className="mt-2">Requests can be sent to: <a href="mailto:info@change-uttarakhand.org" className="text-emerald-600 hover:underline">info@change-uttarakhand.org</a></p>
+                            <p className="mt-2">Requests can be sent to: <a href="mailto:thechangeuttarakhand@gmail.com" className="text-emerald-600 hover:underline">thechangeuttarakhand@gmail.com</a></p>
                         </div>
 
                         <div>
@@ -1333,8 +1334,8 @@ const Legal = () => {
                             <h3 className="text-xl font-bold text-emerald-900 dark:text-emerald-400 mb-4">9. Contact Us</h3>
                             <p className="mb-1 text-sm font-bold uppercase tracking-wider text-slate-500">For privacy-related concerns:</p>
                             <p className="text-lg font-bold text-slate-900 dark:text-white">CHANGE Foundation</p>
-                            <p className="mt-2"><span className="font-bold">Email:</span> <a href="mailto:info@change-uttarakhand.org" className="text-emerald-600 hover:underline">info@change-uttarakhand.org</a></p>
-                            <p className="mt-1"><span className="font-bold">Address:</span> Badshahi Thaul, Tehri Garhwal, Uttarakhand - 249199</p>
+                            <p className="mt-2"><span className="font-bold">Email:</span> <a href="mailto:thechangeuttarakhand@gmail.com" className="text-emerald-600 hover:underline">thechangeuttarakhand@gmail.com</a></p>
+                            <p className="mt-1"><span className="font-bold">Address:</span> Badshahi Thaul, Near S.R.T. Campus, Block Chamba, Tehri Garhwal, Uttarakhand - 249199</p>
                         </div>
 
                     </div>
@@ -1506,7 +1507,7 @@ const Contact = () => {
                                 </div>
                                 <div className="ml-4">
                                     <h3 className="text-lg font-medium text-gray-900">Phone</h3>
-                                    <p className="mt-1 text-gray-600">+91 {Math.floor(Math.random() * 9000000000) + 1000000000}</p>
+                                    <p className="mt-1 text-gray-600">{legalData.contact.phones.join(', ')}</p>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { legalData } from '../lib/constants';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, MousePointer2 } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, MousePointer2, Phone } from 'lucide-react';
+import techLabLogo from '../assets/images/techlab-logo.jpg';
 
 const Footer = () => {
     const [email, setEmail] = useState('');
@@ -70,7 +71,7 @@ const Footer = () => {
                                     {subscribed ? 'Joined Successfully!' : 'Join'}
                                 </button>
                                 <p className="text-xs text-gray-400 text-center">
-                                    By submitting this form, you agree to our <a href="#" className="underline hover:text-white">Privacy Policy</a> and <a href="#" className="underline hover:text-white">Terms of Use</a>.
+                                    By submitting this form, you agree to our <Link to="/legal" className="underline hover:text-white">Privacy Policy</Link> and <Link to="/legal" className="underline hover:text-white">Terms of Use</Link>.
                                 </p>
                             </form>
                         </div>
@@ -93,12 +94,12 @@ const Footer = () => {
                                     </ul>
                                 </div>
 
-                                {/* Social Media placeholders */}
+                                {/* Social Media */}
                                 <div className="flex space-x-4">
-                                    <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Facebook className="w-5 h-5" /></a>
-                                    <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Twitter className="w-5 h-5" /></a>
-                                    <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Instagram className="w-5 h-5" /></a>
-                                    <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Linkedin className="w-5 h-5" /></a>
+                                    <a href="#social-facebook" aria-label="Facebook (Coming Soon)" title="Facebook (Coming Soon)" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Facebook className="w-5 h-5" /></a>
+                                    <a href="#social-twitter" aria-label="Twitter / X (Coming Soon)" title="Twitter / X (Coming Soon)" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Twitter className="w-5 h-5" /></a>
+                                    <a href="#social-instagram" aria-label="Instagram (Coming Soon)" title="Instagram (Coming Soon)" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Instagram className="w-5 h-5" /></a>
+                                    <a href="#social-linkedin" aria-label="LinkedIn (Coming Soon)" title="LinkedIn (Coming Soon)" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary-600 transition-colors"><Linkedin className="w-5 h-5" /></a>
                                 </div>
                             </div>
                         </div>
@@ -129,6 +130,23 @@ const Footer = () => {
                                     <a href={`mailto:${legalData.contact.emailAlt}`} className="block text-sm text-gray-400 hover:text-primary-400 transition-colors mt-1">
                                         {legalData.contact.emailAlt} <span className="text-xs text-gray-500">(TechLab)</span>
                                     </a>
+                                </div>
+
+                                <div>
+                                    <h5 className="text-sm font-semibold text-gray-400 mb-2 flex items-center">
+                                        <Phone className="w-4 h-4 mr-2" /> Phone
+                                    </h5>
+                                    <div className="space-y-1">
+                                        {legalData.contact.phones.map((phone) => (
+                                            <a
+                                                key={phone}
+                                                href={`tel:${phone.replace(/-/g, '')}`}
+                                                className="block text-gray-300 hover:text-primary-400 transition-colors"
+                                            >
+                                                {phone}
+                                            </a>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 <div>
@@ -170,11 +188,28 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Footer */}
-                <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                    <p>© {new Date().getFullYear()} {legalData.legalName}</p>
-                    <div className="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
+                <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
+                    <div className="space-y-2 text-center md:text-left">
+                        <p>© {new Date().getFullYear()} {legalData.legalName}. All rights reserved.</p>
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-400">
+                            <span>Website Managed and Maintained by</span>
+                            <a
+                                href={`mailto:${legalData.contact.emailAlt}`}
+                                className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-750 px-2.5 py-1 rounded-md border border-gray-700 hover:border-primary-500 transition-all text-white group"
+                                title="CHANGE TechLab - changetechlab@gmail.com"
+                            >
+                                <img
+                                    src={techLabLogo}
+                                    alt="CHANGE TechLab Logo"
+                                    className="h-6 w-auto rounded bg-white p-0.5 object-contain"
+                                />
+                                <span className="font-semibold text-primary-400 group-hover:text-primary-300">CHANGE TechLab</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div className="flex space-x-6">
+                        <Link to="/legal" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link to="/legal" className="hover:text-white transition-colors">Terms of Use</Link>
                     </div>
                 </div>
             </div>

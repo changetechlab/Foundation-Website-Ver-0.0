@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { legalData } from '../lib/constants';
 
 const Legal = () => {
     const { hash } = useLocation();
@@ -179,7 +180,7 @@ const Legal = () => {
                                 <li>Request access, correction, or deletion of your data</li>
                                 <li>Opt out of communications at any time</li>
                             </ul>
-                            <p className="mt-2">Requests can be sent to: <a href="mailto:info@change-uttarakhand.org" className="text-emerald-600 hover:underline">info@change-uttarakhand.org</a></p>
+                            <p className="mt-2">Requests can be sent to: <a href={`mailto:${legalData.contact.email}`} className="text-emerald-600 hover:underline">{legalData.contact.email}</a></p>
                         </div>
 
                         <div>
@@ -191,8 +192,8 @@ const Legal = () => {
                             <h3 className="text-xl font-bold text-emerald-900 dark:text-emerald-400 mb-4">9. Contact Us</h3>
                             <p className="mb-1 text-sm font-bold uppercase tracking-wider text-slate-500">For privacy-related concerns:</p>
                             <p className="text-lg font-bold text-slate-900 dark:text-white">CHANGE Foundation</p>
-                            <p className="mt-2"><span className="font-bold">Email:</span> <a href="mailto:info@change-uttarakhand.org" className="text-emerald-600 hover:underline">info@change-uttarakhand.org</a></p>
-                            <p className="mt-1"><span className="font-bold">Address:</span> Badshahi Thaul, Tehri Garhwal, Uttarakhand - 249199</p>
+                            <p className="mt-2"><span className="font-bold">Email:</span> <a href={`mailto:${legalData.contact.email}`} className="text-emerald-600 hover:underline">{legalData.contact.email}</a></p>
+                            <p className="mt-1"><span className="font-bold">Address:</span> {legalData.registeredOffice.address}, {legalData.registeredOffice.block}, {legalData.registeredOffice.district}, {legalData.registeredOffice.state} - {legalData.registeredOffice.pincode}</p>
                         </div>
 
                     </div>

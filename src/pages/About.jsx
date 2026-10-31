@@ -50,6 +50,7 @@ const About = () => {
                     </h2>
                     <div className="space-y-4 text-gray-700">
                         <p className="font-medium text-lg">{legalData.registeredOffice.address}</p>
+                        <p>Block: {legalData.registeredOffice.block}</p>
                         <p>District: {legalData.registeredOffice.district}</p>
                         <p>State: {legalData.registeredOffice.state}</p>
                         <p>PIN: {legalData.registeredOffice.pincode}</p>

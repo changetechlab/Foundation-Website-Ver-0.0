@@ -5,4 +5,5 @@ Disallow: /admin
 Disallow: /private
 Disallow: /tmp
 
-Sitemap: https://www.changefoundation.in/sitemap.xml
+# NOTE: Domain change-uttarakhand.org is pending purchase. Update upon domain finalization.
+Sitemap: https://www.change-uttarakhand.org/sitemap.xml

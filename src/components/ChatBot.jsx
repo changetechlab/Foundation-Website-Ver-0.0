@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
 import { GoogleGenAI, Modality } from "@google/genai";
 
 // Audio Decoding Utilities (PCM Raw Data)
@@ -28,7 +27,6 @@ async function decodeAudioData(data, ctx, sampleRate, numChannels) {
 }
 
 const ChatBot = () => {
-    const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const [language, setLanguage] = useState(() => {
         const saved = localStorage.getItem('chatbot_lang');
@@ -37,7 +35,7 @@ const ChatBot = () => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [isVoiceEnabled, setIsVoiceEnabled] = useState(true);
+    const isVoiceEnabled = true; // Voice always enabled
     const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
 
     const scrollRef = useRef(null);
@@ -185,7 +183,7 @@ const ChatBot = () => {
         try {
             const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
             if (!apiKey) {
-                throw new Error("API Key not found. Please set VITE_GEMINI_API_KEY in .env");
+                const fallbackMsg = language === 'hi' ? "Namaste 🙏 CHANGE Sahayak automated AI jald sakriya hoga. Sahayata ke liye hamari team se thechangeuttarakhand@gmail.com ya +91-9690720525 par seedhe sampark karein." : "Namaste 🙏 Automated AI assistant is undergoing scheduled setup. For inquiries, please contact our team at thechangeuttarakhand@gmail.com or +91-9690720525."; setMessages(prev => [...prev, { role: 'model', text: fallbackMsg }]); setIsLoading(false); return;
             }
             const ai = new GoogleGenAI({ apiKey });
             const systemInstruction = `You are "CHANGE Sahayak", the AI assistant for CHANGE Foundation. Respond in ${language === 'hi' ? 'Hindi' : 'English'}. Be helpful, professional, and rural-friendly.`;
