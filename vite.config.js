@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // Configurable base path: Defaults to GitHub Pages subfolder, or root '/' when VITE_BASE_PATH is set
-  base: process.env.VITE_BASE_PATH || '/Foundation-Website-Ver-0.0/',
+  base: process.env.VITE_BASE_PATH || (process.env.VERCEL ? '/' : '/Foundation-Website-Ver-0.0/'),
   server: {
     proxy: {
       '/api': {
