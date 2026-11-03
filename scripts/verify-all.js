@@ -56,13 +56,11 @@ test('constants.js: Corporate credentials', () => {
 });
 
 // 2. Header Verification
-test('Header.jsx: Clean TechLab label and no corrupt UTF-8 bytes', () => {
+test('Header.jsx: Clean navigation bar and no corrupt UTF-8 bytes', () => {
     const content = fs.readFileSync(path.join(root, 'src/components/Header.jsx'), 'utf8');
     assert(!content.includes('sT,?'), 'Corrupted byte sequence found');
     assert(!content.includes('\ufffd'), 'Replacement character found');
-    assert(content.includes('🔬 TechLab'), 'Missing TechLab link');
-    assert(content.includes('href="https://change-techlab.onrender.com"'), 'Missing TechLab URL');
-    assert(content.includes('rel="noopener noreferrer"'), 'Missing secure rel attribute');
+    assert(content.includes('to="/donate"'), 'Missing Donate button');
 });
 
 // 3. Footer Verification
@@ -73,6 +71,9 @@ test('Footer.jsx: Registered office, phone lines, TechLab badge, legal links', (
     assert(content.includes('Website Managed and Maintained by'), 'Footer must render maintenance attribution');
     assert(content.includes('CHANGE TechLab'), 'Footer must name CHANGE TechLab');
     assert(content.includes('techLabLogo'), 'Footer must import and render TechLab logo');
+    assert(content.includes('href="https://change-techlab.onrender.com"'), 'Footer must link to TechLab portal');
+    assert(content.includes('target="_blank"'), 'TechLab link must open in new tab');
+    assert(content.includes('rel="noopener noreferrer"'), 'TechLab link must include rel="noopener noreferrer"');
     assert(!content.includes('href="#"'), 'Footer must not contain dead href="#" links');
 });
 

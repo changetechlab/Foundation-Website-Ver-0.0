@@ -49,14 +49,6 @@ const Header = () => {
                             <Heart className="w-4 h-4 fill-white/20" />
                             <span>Donate</span>
                         </Link>
-                        <a
-                            href="https://change-techlab.onrender.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm font-medium text-gray-500 hover:text-primary-600 transition-colors duration-200"
-                        >
-                            🔬 TechLab
-                        </a>
                     </div>
 
                     {/* Mobile menu button */}
@@ -104,15 +96,6 @@ const Header = () => {
                                 <span>Donate</span>
                             </Link>
                         </div>
-                        <a
-                            href="https://change-techlab.onrender.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:text-primary-600 hover:bg-gray-50"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            🔬 TechLab
-                        </a>
                     </div>
                 </div>
             )}

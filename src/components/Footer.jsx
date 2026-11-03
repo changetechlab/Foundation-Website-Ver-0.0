@@ -194,9 +194,11 @@ const Footer = () => {
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-xs text-gray-400">
                             <span>Website Managed and Maintained by</span>
                             <a
-                                href={`mailto:${legalData.contact.emailAlt}`}
+                                href="https://change-techlab.onrender.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-750 px-2.5 py-1 rounded-md border border-gray-700 hover:border-primary-500 transition-all text-white group"
-                                title="CHANGE TechLab - changetechlab@gmail.com"
+                                title="CHANGE TechLab - Rural Intelligence, GIS & Climate Finance"
                             >
                                 <img
                                     src={techLabLogo}
