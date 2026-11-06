@@ -57,16 +57,6 @@ const homeData = {
     ],
     "impactGallery": [
         {
-            "url": "https://images.unsplash.com/photo-1590487988256-9ed24133863e",
-            "caption": "Farmers participating in a digital literacy workshop in Pauri Garhwal.",
-            "category": "Empowerment"
-        },
-        {
-            "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef",
-            "caption": "Terraced farming enhanced by precision irrigation technologies.",
-            "category": "Agriculture"
-        },
-        {
             "url": imgTurmeric,
             "caption": "Local women self-help groups sorting freshly harvested organic turmeric.",
             "category": "Livelihood"
