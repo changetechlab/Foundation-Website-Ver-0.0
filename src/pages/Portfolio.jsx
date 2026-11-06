@@ -11,7 +11,8 @@ import {
     X,
     Maximize2,
     ArrowUpRight,
-    CheckCircle2
+    CheckCircle2,
+    ExternalLink
 } from 'lucide-react';
 
 // Process Photographs (First Ferment)
@@ -426,6 +427,36 @@ const Portfolio = () => {
                                 Inquire & Collaborate
                                 <ArrowUpRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </Link>
+                        </div>
+
+                        {/* Our Creative & Cultural Collaborators */}
+                        <div className="mt-14 pt-10 border-t border-stone-800">
+                            <div className="text-center sm:text-left mb-6">
+                                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                                    Our Creative & Cultural Collaborators
+                                </h3>
+                            </div>
+
+                            <div className="bg-stone-800/60 border border-stone-700/60 hover:border-amber-400/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 group">
+                                <div className="space-y-2">
+                                    <h4 className="text-xl font-bold text-white tracking-wide group-hover:text-amber-300 transition-colors">
+                                        BURANÉ — The Culture Co.
+                                    </h4>
+                                    <p className="text-sm text-stone-300 max-w-xl leading-relaxed">
+                                        An emerging initiative celebrating culture, creativity and Himalayan identity.
+                                    </p>
+                                </div>
+
+                                <a
+                                    href="https://pranavburane.github.io/Burane"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-sm transition-all whitespace-nowrap shadow-md shrink-0 group/btn"
+                                >
+                                    Explore BURANÉ
+                                    <ExternalLink className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </section>
